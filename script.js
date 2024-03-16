@@ -8,8 +8,9 @@ scissors = []
 playAgain = true;
 
 function userPrompt() {
-let userChoice = prompt("enter R, P, or S for Rock Paper Scissors")
-if (userChoice !== "R" && userChoice !== "P" && userChoice !=="S") {
+let userChoice = prompt("enter R, P, or S for Rock Paper Scissors");
+userChoice = userChoice.toUpperCase()
+if (!choice.includes(userChoice)) {
 alert("invalid input")
 } 
 return userChoice
@@ -41,6 +42,9 @@ if (userChoice == "S") {scissors.push("scissor")}
 if (userChoice == "P") {papers.push("paper")}
 }
 
+gamePlay()
+
+function gamePlay() {
 while (playAgain) {
 const userChoice = userPrompt();
 const computerChoice = computerPlay();
@@ -48,12 +52,23 @@ playGame (userChoice, computerChoice);
 playAgain = confirm("would you like to play again?");
 }
 
+
+
 console.log (`you tied ${ties.length} many times`)
 console.log (`you won ${wins.length} many times`)
 console.log (`you lost ${losses.length} many times`)
 console.log (`you chose ROCK ${rocks.length} many times`)
 console.log (`you chose PAPER ${papers.length} many times`)
 console.log (`you chose SCISSORS ${scissors.length} many times`)
+
+document.getElementById('your-results1').innerHTML = "";
+document.getElementById('your-results2').innerHTML = "";
+document.getElementById('your-results3').innerHTML = "";
+document.getElementById('your-results4').innerHTML = "";
+document.getElementById('your-results5').innerHTML = "";
+document.getElementById('your-results6').innerHTML = "";
+document.getElementById('greeting').innerHTML = "";
+
 
 let element = document.getElementById('your-results1')
 const textNode1 = document.createTextNode(`you tied ${ties.length} times`);
@@ -76,3 +91,13 @@ element.appendChild(textNode6);
 element = document.getElementById('greeting')
 const textNode7 = document.createTextNode(`Thanks for Playing!`);
 element.appendChild(textNode7);
+}
+
+
+
+document.getElementById("continue").addEventListener("click", continuePlaying);
+
+function continuePlaying () {
+    playAgain = true;
+    gamePlay()
+}
